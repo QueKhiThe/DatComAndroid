@@ -1,11 +1,15 @@
 package com.quekhithe.datcomandroid;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.quekhithe.datcomandroid.Database.Database;
 import com.quekhithe.datcomandroid.Model.Order;
+import com.quekhithe.datcomandroid.Model.Request;
 import com.quekhithe.datcomandroid.ViewHolder.CartAdapter;
 
 import java.text.NumberFormat;
@@ -68,9 +73,50 @@ public class GioHangActivity extends AppCompatActivity {
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Database(getBaseContext()).emptyCart();
-                Toast.makeText(GioHangActivity.this, "Cảm ơn bạn đã đặt hàng", Toast.LENGTH_SHORT).show();
-                finish();
+               // new Database(getBaseContext()).emptyCart();
+
+                AlertDialog.Builder alert =  new AlertDialog.Builder(GioHangActivity.this);
+                alert.setTitle("SDT và địa chỉ");
+                alert.setMessage("Vui lòng nhập địa chỉ và số điện thoại để chúng tôi giao hàng");
+
+                LinearLayout layout = new LinearLayout(GioHangActivity.this);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+                final EditText name = new EditText(GioHangActivity.this);
+                name.setHint("Tên");
+                layout.addView(name);
+
+                final EditText address = new EditText(GioHangActivity.this);
+                address.setHint("Địa chỉ");
+                layout.addView(address);
+
+                final EditText phone = new EditText(GioHangActivity.this);
+                phone.setHint("Số điện thoại");
+                layout.addView(phone);
+
+                alert.setView(layout);
+
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Request request = new Request(name.getText().toString(),
+                                phone.getText().toString(),
+                                address.getText().toString(),
+                                txtTotal.getText().toString(),
+                                cart);
+                        order.child(String.valueOf(System.currentTimeMillis())).setValue(request);
+                        Toast.makeText(GioHangActivity.this, "Đơn hàng của bạn đã được đặt, cảm ơn", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                alert.setNegativeButton("Cancal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                alert.show();
             }
         });
 
