@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorGreen">#15ea32</color>
+    <color name="colorWhile">#F8F8FF</color>
+    <color name="colorBackground">#08e6da</color>
+    <color name="trong_suot">#7f333639</color>
+</resources>

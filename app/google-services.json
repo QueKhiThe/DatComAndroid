@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "193984828593",
+    "firebase_url": "https://datcomandroid.firebaseio.com",
+    "project_id": "datcomandroid",
+    "storage_bucket": "datcomandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193984828593:android:01a1f9c1d6aeb27c",
+        "android_client_info": {
+          "package_name": "com.quekhithe.datcomandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193984828593-dasvrk37aqkdevekm83ducbq88tm4f19.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quekhithe.datcomandroid",
+            "certificate_hash": "21021d3c6c373a88fff75c301126b5e469c6b192"
+          }
+        },
+        {
+          "client_id": "193984828593-01b5lprgf89sfo83hg4pl3li4fr07kn4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHDa7a5Yv18ovfRQ9YfAZIO0zu8d22OTo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193984828593-01b5lprgf89sfo83hg4pl3li4fr07kn4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
