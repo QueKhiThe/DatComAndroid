@@ -73,7 +73,7 @@ public class GioHangActivity extends AppCompatActivity {
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // new Database(getBaseContext()).emptyCart();
+
 
                 AlertDialog.Builder alert =  new AlertDialog.Builder(GioHangActivity.this);
                 alert.setTitle("SDT và địa chỉ");
@@ -106,13 +106,17 @@ public class GioHangActivity extends AppCompatActivity {
                                 cart);
                         order.child(String.valueOf(System.currentTimeMillis())).setValue(request);
                         Toast.makeText(GioHangActivity.this, "Đơn hàng của bạn đã được đặt, cảm ơn", Toast.LENGTH_SHORT).show();
+                        new Database(getBaseContext()).emptyCart();
+                        finish();
                     }
                 });
 
                 alert.setNegativeButton("Cancal", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        new Database(getBaseContext()).emptyCart();
                         dialogInterface.dismiss();
+                        finish();
                     }
                 });
 
