@@ -117,7 +117,7 @@ public class GioHangActivity extends AppCompatActivity {
                     }
                 });
 
-                alert.setNegativeButton("Cancal", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Xoá", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         new Database(getBaseContext()).emptyCart();
