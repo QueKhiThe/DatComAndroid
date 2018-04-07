@@ -161,12 +161,12 @@ public class TrangChuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_menu) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.nav_order) {
+            startActivity(new Intent(TrangChuActivity.this, OrderActivity.class));
+        } else if (id == R.id.nav_cart) {
+            startActivity(new Intent(TrangChuActivity.this, GioHangActivity.class));
 
         } else if (id == R.id.nav_share) {
 

@@ -21,17 +21,17 @@ import java.util.Locale;
 
 class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtOrderName, txtOrderTotal;
+    public TextView txtCartName, txtCartTotal;
     public ImageView imgCount;
 
     private ItemClickListener itemClickListener;
 
-    public void setTxtOrderName(TextView txtOrderName) {
-        this.txtOrderName = txtOrderName;
+    public void setTxtCartName(TextView txtOrderName) {
+        this.txtCartName = txtOrderName;
     }
 
-    public void setTxtOrderTotal(TextView txtOrderTotal) {
-        this.txtOrderTotal = txtOrderTotal;
+    public void setTxtCartTotal(TextView txtOrderTotal) {
+        this.txtCartTotal = txtOrderTotal;
     }
 
     public void setImgCount(ImageView imgCount) {
@@ -41,8 +41,8 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
     public CartViewHolder(View itemView) {
         super(itemView);
 
-        txtOrderName = itemView.findViewById(R.id.txtOrderName);
-        txtOrderTotal = itemView.findViewById(R.id.txtOrderTotal);
+        txtCartName = itemView.findViewById(R.id.txtCartName);
+        txtCartTotal = itemView.findViewById(R.id.txtCartTotal);
         imgCount = itemView.findViewById(R.id.imgCount);
     }
 
@@ -73,12 +73,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     public void onBindViewHolder(CartViewHolder holder, int position) {
         TextDrawable drawable = TextDrawable.builder().buildRound(""+listData.get(position).getProductQuantity(), Color.RED);
         holder.imgCount.setImageDrawable(drawable);
-        holder.txtOrderName.setText(listData.get(position).getProductName());
+        holder.txtCartName.setText(listData.get(position).getProductName());
 
         Locale locale = new Locale("en", "US");
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
         int total = Integer.parseInt(listData.get(position).getProductPrice()) * Integer.parseInt(listData.get(position).getProductQuantity());
-        holder.txtOrderTotal.setText(numberFormat.format(total));
+        holder.txtCartTotal.setText(numberFormat.format(total));
     }
 
     @Override

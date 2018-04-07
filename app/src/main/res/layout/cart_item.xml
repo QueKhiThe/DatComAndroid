@@ -18,14 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/txtOrderName"
+            android:id="@+id/txtCartName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Gà"
             android:textSize="25dp"
             />
         <TextView
-            android:id="@+id/txtOrderTotal"
+            android:id="@+id/txtCartTotal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="25k"

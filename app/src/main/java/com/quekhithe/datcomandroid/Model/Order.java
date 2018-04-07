@@ -10,7 +10,10 @@ public class Order {
     private String ProductPrice;
     private String ProductQuantity;
 
-    public Order( String productName, String productPrice, String productQuantity) {
+    public Order() {
+    }
+
+    public Order(String productName, String productPrice, String productQuantity) {
     }
 
     public Order( String productID, String productName, String productPrice, String productQuantity) {

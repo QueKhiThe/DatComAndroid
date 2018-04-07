@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.quekhithe.datcomandroid.Database.Database;
@@ -35,6 +37,7 @@ public class GioHangActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference order;
+    FirebaseUser user;
 
     List<Order> cart = new ArrayList<>();
     CartAdapter cartAdapter;
@@ -49,6 +52,9 @@ public class GioHangActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         order = database.getReference("Order");
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        final String email = user.getEmail();
 
         recyclerGioHang = findViewById(R.id.recyclerGioHang);
         recyclerGioHang.setHasFixedSize(true);
@@ -82,8 +88,8 @@ public class GioHangActivity extends AppCompatActivity {
                 LinearLayout layout = new LinearLayout(GioHangActivity.this);
                 layout.setOrientation(LinearLayout.VERTICAL);
 
-                final EditText name = new EditText(GioHangActivity.this);
-                name.setHint("Tên");
+                final TextView name = new TextView(GioHangActivity.this);
+                name.setText(email);
                 layout.addView(name);
 
                 final EditText address = new EditText(GioHangActivity.this);
@@ -103,10 +109,10 @@ public class GioHangActivity extends AppCompatActivity {
                                 phone.getText().toString(),
                                 address.getText().toString(),
                                 txtTotal.getText().toString(),
+                                "Đã đặt",
                                 cart);
                         order.child(String.valueOf(System.currentTimeMillis())).setValue(request);
                         Toast.makeText(GioHangActivity.this, "Đơn hàng của bạn đã được đặt, cảm ơn", Toast.LENGTH_SHORT).show();
-                        new Database(getBaseContext()).emptyCart();
                         finish();
                     }
                 });

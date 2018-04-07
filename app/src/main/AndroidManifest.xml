@@ -24,7 +24,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".MonAnActivity" />
         <activity android:name=".ChiTietMonAnActivity" />
-        <activity android:name=".GioHangActivity"></activity>
+        <activity android:name=".GioHangActivity" />
+        <activity android:name=".OrderActivity"></activity>
     </application>
 
 </manifest>
