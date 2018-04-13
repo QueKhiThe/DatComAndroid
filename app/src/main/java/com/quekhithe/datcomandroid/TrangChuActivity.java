@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -53,6 +54,8 @@ public class TrangChuActivity extends AppCompatActivity
 
     public String isAdmin = "0";
 
+    boolean doubleBackToExitPressedOnce = false;
+
     FirebaseDatabase database;
     DatabaseReference category;
     FirebaseStorage storage;
@@ -96,15 +99,6 @@ public class TrangChuActivity extends AppCompatActivity
         if (name.equals("admin@gmail.com")) {
             isAdmin = "1";
         }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -216,6 +210,7 @@ public class TrangChuActivity extends AppCompatActivity
         dialog.show();
     }
 
+    //Hàm tải ảnh lên
     private void upload() {
         if (uri != null) {
 
@@ -241,6 +236,7 @@ public class TrangChuActivity extends AppCompatActivity
         }
     }
 
+    //Hàm chọn ảnh từ thẻ nhớ
     private void select() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -257,6 +253,7 @@ public class TrangChuActivity extends AppCompatActivity
         }
     }
 
+    //Hàm load menu
     private void loadMenu() {
          adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
             @Override
@@ -269,7 +266,7 @@ public class TrangChuActivity extends AppCompatActivity
                         //Toast.makeText(TrangChuActivity.this, model.getName()+"", Toast.LENGTH_SHORT).show();
                         //Gửi CategoryID sang Food
                         Intent intent= new Intent(TrangChuActivity.this, MonAnActivity.class);
-                        intent.putExtra("CategoryId", adapter.getRef(position).getKey());
+                        intent.putExtra("MenuId", adapter.getRef(position).getKey());
                         startActivity(intent);
                     }
                 });
@@ -280,12 +277,28 @@ public class TrangChuActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//        if (doubleBackToExitPressedOnce) {
+//            super.onBackPressed();
+//            return;
+//        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Back lần nữa để thoát", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                Toast.makeText(TrangChuActivity.this, "Hẹn gặp lại ^_^", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }, 2000);
     }
 
     @Override

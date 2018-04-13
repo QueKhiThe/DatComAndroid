@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +31,8 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference detail;
 
+    FirebaseUser user;
+
     String FoodID = "";
 
     Food food;
@@ -47,6 +51,14 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         detail = database.getReference("Food");
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String name = user.getEmail();
+
+        if (name.equals("admin@gmail.com")) {
+            fabAdd.setVisibility(View.GONE);
+            DetailButton.setVisibility(View.GONE);
+        }
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
