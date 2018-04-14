@@ -5,6 +5,8 @@ import android.view.ContextMenu;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.quekhithe.datcomandroid.Interface.ItemClickListener;
 import com.quekhithe.datcomandroid.R;
 
@@ -13,6 +15,8 @@ import com.quekhithe.datcomandroid.R;
  */
 
 public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
+
+    FirebaseUser user;
 
     public TextView txtOrderID, txtOrderTotal, txtOrderPhone, txtOrderAddress, txtOrderStatus;
 
@@ -27,9 +31,15 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
         txtOrderAddress = itemView.findViewById(R.id.txtOrderAddress);
         txtOrderStatus = itemView.findViewById(R.id.txtOrderStatus);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String name = user.getEmail();
+
         itemView.setOnClickListener(this);
 
-        itemView.setOnCreateContextMenuListener(this);
+        if (name.equals("admin@gmail.com")) {
+            itemView.setOnCreateContextMenuListener(this);
+        }
+
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
